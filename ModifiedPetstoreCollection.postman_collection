@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "b81cd961-511d-4f3f-8c53-69b761bb002f",
+		"name": "PetstoreCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25890531"
+	},
+	"item": [
+		{
+			"name": "https://petstore.swagger.io/v2/swagger.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name should have an OK string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData)\r",
+							"console.log(jsonData.swagger)\r",
+							"console.log(jsonData.info.title)\r",
+							"console.log(jsonData.info.version)\r",
+							"console.log(jsonData.schemes[1])\r",
+							"console.log(jsonData.tags[0].description)\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Confirm that swagger is 2.0\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.swagger).to.eql(\"2.0\");\r",
+							"    pm.expect(jsonData.info.title).to.eql(\"Swagger Petstore\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Confirm that tags has description as Everything about your Pets\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.tags[0].description).to.eql(\"Everything about your Pets\");\r",
+							"\r",
+							"});\r",
+							"    pm.expect(jsonData.info.title).to.eql(\"Swagger Petstore\");\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(jsonData)\r",
+							"\r",
+							"   }); \r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Confirm that schemes is http\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.schemes[1]).to.eql(\"http\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Confirm that version 1.0.6 is present\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.info.version).to.eql(\"1.0.6\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"confirm body matches swagger\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"2.0\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/swagger.json",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"swagger.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
