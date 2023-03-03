@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "b81cd961-511d-4f3f-8c53-69b761bb002f",
+		"name": "PetstoreCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25890531"
+	},
+	"item": [
+		{
+			"name": "https://petstore.swagger.io/v2/swagger.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData)\r",
+							"console.log(jsonData.schemes)\r",
+							"console.log(jsonData.schemes[0])\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code name has OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"pet\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"https\");\r",
+							"});\r",
+							"//pm.test(\"Confirm that the total result is 2\", function () {\r",
+							" //   pm.expect(jsonData.schemes).to.eql(\"2\");\r",
+							"//});\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(jsonData);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v2/swagger.json",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2",
+						"swagger.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://petstore.swagger.io/v2/swagger.json Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData)\r",
+							"console.log(jsonData.schemes)\r",
+							"console.log(jsonData.schemes[0])\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code name has OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"pet\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"https\");\r",
+							"});\r",
+							"//pm.test(\"Confirm that the total result is 2\", function () {\r",
+							" //   pm.expect(jsonData.schemes).to.eql(\"2\");\r",
+							"//});\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(jsonData);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrlTestify}}/v2/swagger.json?baseUrlTestify={{baseUrl}}",
+					"host": [
+						"{{baseUrlTestify}}"
+					],
+					"path": [
+						"v2",
+						"swagger.json"
+					],
+					"query": [
+						{
+							"key": "baseUrlTestify",
+							"value": "{{baseUrl}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{baseUrl}}/swagger.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"console.log(jsonData)\r",
+							"\r",
+							"\r",
+							"pm.environment.set(\"body\", \"jsonData\");\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v2/swagger.json?baseUrl=https://petstore.swagger.io&schemes&tags",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2",
+						"swagger.json"
+					],
+					"query": [
+						{
+							"key": "baseUrl",
+							"value": "https://petstore.swagger.io"
+						},
+						{
+							"key": "schemes",
+							"value": null
+						},
+						{
+							"key": "tags",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{baseUrl}}/swagger.json/tags",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"const tags = pm.response.json ();\r",
+							"console.log(jsonData)\r",
+							"console.log(jsonData.tags[0].name)\r",
+							"console.log(jsonData.tags[1].description)\r",
+							"\r",
+							"pm.environment.set(\"tags\", \"jsonData.tags[0].name\");\r",
+							"\r",
+							"pm.environment.set(\"tags\", \"jsonData.tags[1].description\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v2/swagger.json?tags={{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2",
+						"swagger.json"
+					],
+					"query": [
+						{
+							"key": "tags",
+							"value": "{{baseUrl}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{baseUrl}}/swagger.json/info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData)\r",
+							"console.log(jsonData.info)\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.environment.set(\"info\", \"jsonData.info\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v2/swagger.json?info={{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2",
+						"swagger.json"
+					],
+					"query": [
+						{
+							"key": "info",
+							"value": "{{baseUrl}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{baseUrl}}/swagger.json/schemes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData)\r",
+							"console.log(jsonData.schemes[0])\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.environment.set(\"schemes\", \"jsonData.schemes[0]\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v2/swagger.json?schemes={{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2",
+						"swagger.json"
+					],
+					"query": [
+						{
+							"key": "schemes",
+							"value": "{{baseUrl}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{baseUrl}}/swagger.json/tags",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							" \r",
+							"\r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"console.log(jsonData)\r",
+							"\r",
+							"console.log(jsonData.tags)\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.collectionVariables.get(\"jsonData.tags\");\r",
+							"\r",
+							"    });\r",
+							"\r",
+							"pm.environment.set(\"tags\", \"jsonData.tags[0].name\");\r",
+							"\r",
+							"pm.environment.set(\"tags\", \"jsonData.tags[1].description\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrlTestify}}/v2/swagger.json?tags={{baseUrl}}",
+					"host": [
+						"{{baseUrlTestify}}"
+					],
+					"path": [
+						"v2",
+						"swagger.json"
+					],
+					"query": [
+						{
+							"key": "tags",
+							"value": "{{baseUrl}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
